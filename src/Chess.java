@@ -1,5 +1,3 @@
-
-
 /**
  * This code is created to determine whether a King on a 8x8 chess-board is in check.
  * This excludes multiple pieces checking a king and both kings being in check.
@@ -43,7 +41,8 @@ public class Chess {
 	/**
 	 * 
 	 * @param board-2D array that is made up of character values.
-	 * @return
+	 * @return boolean-true if there is a 'K' (black king) in the movement area of the pawn. False
+	 * if there is not.
 	 */
 	private boolean whitePawnChecksKing(char[][] board){
 		return true;
