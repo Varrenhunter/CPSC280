@@ -34,10 +34,11 @@ public class Chess {
 	/**
 	 * 
 	 * @param board-2D array that is made up of character values.
-	 * @return
+	 * @return boolean-true if there is a 'K' (white king) in the movement area of the pawn. False
+	 * if there is not.
 	 */
 	private boolean blackPawnChecksKing(char[][] board){
-		for(int i = 0; i<)
+		return true;
 	}
 	/**
 	 * 
@@ -45,14 +46,8 @@ public class Chess {
 	 * @return
 	 */
 	private boolean whitePawnChecksKing(char[][] board){
-		
+		return true;
 	}
-	/**
-	 * @param
-	 * @return 
-	 */
-	private boolean black
-	
 	/**
 	 * This is the main method of the program, that determines whether a king is in check on the
 	 * input board.
