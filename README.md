@@ -1,2 +1,2 @@
 # CPSC280
-all notes and code for class CPSC 280.
+all notes and code for Introduction to Software Engineering, CPSC 280.
