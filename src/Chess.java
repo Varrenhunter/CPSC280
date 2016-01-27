@@ -1,122 +1,293 @@
-/**
- * This code is created to determine whether a King on a 8x8 chess-board is in check.
- * This excludes multiple pieces checking a king and both kings being in check.
- * @author Ethan Farthing
- * @version 0.01
- *
- */
-public class Chess {
 
+
+public class Chess
+{
 	/**
-	 * This checks a character value to determine whether it is a black king.
-	 * @param spot-Character value that is being checked for being a king.
-	 * @return boolean-true if the character is k, false if anything else.
-	 */
-	private boolean hasBlackKing(char spot){
-		if(spot == 'k'){
-			return true;
-		}
-		return false;
-	}
-	/**
-	 * This checks a character value to determine whether it is a white king.
-	 * @param spot-Character value that is being checked for being a white king.
-	 * @return boolean - true if the character is K, false if anything else.
-	 */
-	private boolean hasWhiteKing(char spot){
-		if(spot == 'K'){
-			return true;
-		}
-		return false;
-	}
-	/**
+	 * Gets the piece in check the king
 	 * 
-	 * @param board-2D array that is made up of character values.
-	 * @return boolean-true if there is a 'K' (white king) in the movement area of the pawn. False
-	 * if there is not.
+	 * @param board the chess board
+	 * @return the piece checking the king
 	 */
-	private boolean blackPawnChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		  for (int j = 0; j<col; j++){
-			     for (int i = 0; i<row; i++){
-			    	 if(board[j][i]=='p'){
-			    		 
-			    	 }
-			     }
+
+	public static char getCheck(char[][] board)
+	{
+		for(int vert = 0; vert < board.length; vert++)
+		{
+			for(int hori = 0; hori < board[vert].length; hori++)
+			{
+				if(board[vert][hori] == 'k')
+				{
+					// Check for pawns
+					if(vert + 1 <= 7 && hori - 1 >= 0 && board[vert + 1][hori - 1] == 'P')
+					{
+						return 'P';
+					}
+					else if (vert + 1 <= 7 && hori + 1 <= 7 && board[vert + 1][hori + 1] == 'P')
+					{
+						return 'P';
+					}
+					
+					// Check for king
+					if(vert - 1 >= 0 && hori - 1 >= 0 && board[vert - 1][hori - 1] == 'K')
+					{
+						return 'K';
+					}
+					else if(vert - 1 >= 0 && board[vert - 1][hori] == 'K')
+					{
+						return 'K';
+					}
+					else if(vert - 1 >= 0 && hori + 1 <= 7 && board[vert - 1][hori + 1] == 'K')
+					{
+						return 'K';
+					}
+					else if(hori - 1 >= 0 && board[vert][hori - 1] == 'K')
+					{
+						return 'K';
+					}
+					else if(hori + 1 <= 7 && board[vert][hori + 1] == 'K')
+					{
+						return 'K';
+					}
+					else if(vert + 1 <= 7 && hori - 1 >= 0 && board[vert + 1][hori - 1] == 'K')
+					{
+						return 'K';
+					}
+					else if(vert + 1 <= 7 && board[vert + 1][hori] == 'K')
+					{
+						return 'K';
+					}
+					else if(vert + 1 <= 7 && hori + 1 <= 7 && board[vert + 1][hori + 1] == 'K')
+					{
+						return 'K';
+					}
+					
+					// Check for knights
+					if(vert - 2 >= 0 && hori - 1 >= 0 && board[vert - 2][hori - 1] == 'N')
+					{
+						return 'N';
+					}
+					else if(vert - 2 >= 0 && hori + 1 <= 7 && board[vert - 2][hori + 1] == 'N')
+					{
+						return 'N';
+					}
+					else if(vert - 1 >= 0 && hori - 2 >= 0 && board[vert - 1][hori - 2] == 'N')
+					{
+						return 'N';
+					}
+					else if(vert - 1 >= 0 && hori + 2 <= 7 && board[vert - 1][hori + 2] == 'N')
+					{
+						return 'N';
+					}
+					else if(vert + 1 <= 7 && hori - 2 >= 0 && board[vert + 1][hori - 2] == 'N')
+					{
+						return 'N';
+					}
+					else if(vert + 1 <= 7 && hori + 2 <= 7 && board[vert + 1][hori + 2] == 'N')
+					{
+						return 'N';
+					}
+					else if(vert + 2 <= 7 && hori - 1 >= 0 && board[vert + 2][hori - 1] == 'N')
+					{
+						return 'N';
+					}
+					else if(vert + 2 <= 7 && hori + 1 <= 7 && board[vert + 2][hori + 1] == 'N')
+					{
+						return 'N';
+					}
+					
+					// Check for queen
+					for(int i = 0; i < board.length; i++)
+					{
+						if(vert - i >= 0 && hori - i >= 0 && board[vert - i][hori - i] == 'Q')
+						{
+							return 'Q';
+						}
+						else if(vert - i >= 0 && hori + i <= 7 && board[vert - i][hori + i] == 'Q')
+						{
+							return 'Q';
+						}
+						else if(vert + i <= 7 && hori - i >= 0 && board[vert + i][hori - i] == 'Q')
+						{
+							return 'Q';
+						}
+						else if(vert + i <= 7 && hori + i <= 7 && board[vert + i][hori + i] == 'Q')
+						{
+							return 'Q';
+						}
+						else if(board[vert][i] == 'Q' || board[i][hori] == 'Q')
+						{
+							return 'Q';
+						}
+					}
+					
+					// Check for rooks
+					for(int i = 0; i < board.length; i++)
+					{
+						if(board[vert][i] == 'R' || board[i][hori] == 'R')
+						{
+							return 'R';
+						}
+					}
+					
+					// Check for bishops
+					for(int i = 0; i < board.length; i++)
+					{
+						if(vert - i >= 0 && hori - i >= 0 && board[vert - i][hori - i] == 'B')
+						{
+							return 'B';
+						}
+						else if(vert - i >= 0 && hori + i <= 7 && board[vert - i][hori + i] == 'B')
+						{
+							return 'B';
+						}
+						else if(vert + i <= 7 && hori - i >= 0 && board[vert + i][hori - i] == 'B')
+						{
+							return 'B';
+						}
+						else if(vert + i <= 7 && hori + i <= 7 && board[vert + i][hori + i] == 'B')
+						{
+							return 'B';
+						}
+					}
+				}
+				else if(board[vert][hori] == 'K')
+				{
+					// Check for pawns
+					if(vert + 1 >= 0 && hori - 1 >= 0 && board[vert - 1][hori - 1] == 'p')
+					{
+						return 'p';
+					}
+					else if (vert + 1 >= 0 && hori + 1 <= 7 && board[vert - 1][hori + 1] == 'p')
+					{
+						return 'p';
+					}
+					
+					// Check for king
+					if(vert - 1 >= 0 && hori - 1 >= 0 && board[vert - 1][hori - 1] == 'k')
+					{
+						return 'k';
+					}
+					else if(vert - 1 >= 0 && board[vert - 1][hori] == 'k')
+					{
+						return 'k';
+					}
+					else if(vert - 1 >= 0 && hori + 1 <= 7 && board[vert - 1][hori + 1] == 'k')
+					{
+						return 'k';
+					}
+					else if(hori - 1 >= 0 && board[vert][hori - 1] == 'k')
+					{
+						return 'k';
+					}
+					else if(hori + 1 <= 7 && board[vert][hori + 1] == 'k')
+					{
+						return 'k';
+					}
+					else if(vert + 1 <= 7 && hori - 1 >= 0 && board[vert + 1][hori - 1] == 'k')
+					{
+						return 'k';
+					}
+					else if(vert + 1 <= 7 && board[vert + 1][hori] == 'k')
+					{
+						return 'k';
+					}
+					else if(vert + 1 <= 7 && hori + 1 <= 7 && board[vert + 1][hori + 1] == 'k')
+					{
+						return 'k';
+					}
+					
+					// Check for knights
+					if(vert - 2 >= 0 && hori - 1 >= 0 && board[vert - 2][hori - 1] == 'n')
+					{
+						return 'n';
+					}
+					else if(vert - 2 >= 0 && hori + 1 <= 7 && board[vert - 2][hori + 1] == 'n')
+					{
+						return 'n';
+					}
+					else if(vert - 1 >= 0 && hori - 2 >= 0 && board[vert - 1][hori - 2] == 'n')
+					{
+						return 'n';
+					}
+					else if(vert - 1 >= 0 && hori + 2 <= 7 && board[vert - 1][hori + 2] == 'n')
+					{
+						return 'n';
+					}
+					else if(vert + 1 <= 7 && hori - 2 >= 0 && board[vert + 1][hori - 2] == 'n')
+					{
+						return 'n';
+					}
+					else if(vert + 1 <= 7 && hori + 2 <= 7 && board[vert + 1][hori + 2] == 'n')
+					{
+						return 'n';
+					}
+					else if(vert + 2 <= 7 && hori - 1 >= 0 && board[vert + 2][hori - 1] == 'n')
+					{
+						return 'n';
+					}
+					else if(vert + 2 <= 7 && hori + 1 <= 7 && board[vert + 2][hori + 1] == 'n')
+					{
+						return 'n';
+					}
+					
+					// Check for queen
+					for(int i = 0; i < board.length; i++)
+					{
+						if(vert - i >= 0 && hori - i >= 0 && board[vert - i][hori - i] == 'q')
+						{
+							return 'q';
+						}
+						else if(vert - i >= 0 && hori + i <= 7 && board[vert - i][hori + i] == 'q')
+						{
+							return 'q';
+						}
+						else if(vert + i <= 7 && hori - i >= 0 && board[vert + i][hori - i] == 'q')
+						{
+							return 'q';
+						}
+						else if(vert + i <= 7 && hori + i <= 7 && board[vert + i][hori + i] == 'q')
+						{
+							return 'q';
+						}
+						else if(board[vert][i] == 'q' || board[i][hori] == 'q')
+						{
+							return 'q';
+						}
+					}
+					
+					// Check for rooks
+					for(int i = 0; i < board.length; i++)
+					{
+						if(board[vert][i] == 'r' || board[i][hori] == 'r')
+						{
+							return 'r';
+						}
+					}
+					
+					// Check for bishops
+					for(int i = 0; i < board.length; i++)
+					{
+						if(vert - i >= 0 && hori - i >= 0 && board[vert - i][hori - i] == 'b')
+						{
+							return 'b';
+						}
+						else if(vert - i >= 0 && hori + i <= 7 && board[vert - i][hori + i] == 'b')
+						{
+							return 'b';
+						}
+						else if(vert + i <= 7 && hori - i >= 0 && board[vert + i][hori - i] == 'b')
+						{
+							return 'b';
+						}
+						else if(vert + i <= 7 && hori + i <= 7 && board[vert + i][hori + i] == 'b')
+						{
+							return 'b';
+						}
+					}
+				}
+			}
 		}
-		return true;
+		
+		return '-';
 	}
-	private boolean blackKnightChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean blackRookChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean blackBishopChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean blackQueenChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean blackKingChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	/**
-	 * 
-	 * @param board-2D array that is made up of character values.
-	 * @return boolean-true if there is a 'K' (black king) in the movement area of the pawn. False
-	 * if there is not.
-	 */
-	private boolean whitePawnChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean whiteKnightChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean whiteRookChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean whiteBishopChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean whiteQueenChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	private boolean whiteKingChecksKing(char[][] board){
-		int row = board.length;
-		  int col = board[0].length;
-		return true;
-	}
-	/**
-	 * This is the main method of the program, that determines whether a king is in check on the
-	 * input board.
-	 * @param board-2D array that is made up of character values.
-	 * @return char- character returned determines whether there is a checked black king ('k'),
-	 * a checked white king ('K'), or whether there is no checked king ('-').
-	 */
-	public static char getCheck(char[][] board){
-		return '0';
-	}
-	
 }
