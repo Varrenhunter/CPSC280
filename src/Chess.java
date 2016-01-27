@@ -36,6 +36,40 @@ public class Chess {
 	 * if there is not.
 	 */
 	private boolean blackPawnChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		  for (int j = 0; j<col; j++){
+			     for (int i = 0; i<row; i++){
+			    	 if(board[j][i]=='p'){
+			    		 
+			    	 }
+			     }
+		}
+		return true;
+	}
+	private boolean blackKnightChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean blackRookChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean blackBishopChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean blackQueenChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean blackKingChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
 		return true;
 	}
 	/**
@@ -45,6 +79,33 @@ public class Chess {
 	 * if there is not.
 	 */
 	private boolean whitePawnChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean whiteKnightChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean whiteRookChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean whiteBishopChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean whiteQueenChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
+		return true;
+	}
+	private boolean whiteKingChecksKing(char[][] board){
+		int row = board.length;
+		  int col = board[0].length;
 		return true;
 	}
 	/**
